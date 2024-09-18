@@ -40,10 +40,6 @@ public partial class MainForm : Form
             .ConfigureWebHostDefaults(webBuilder =>
             {
                 webBuilder.UseStartup<AspNetCoreStartup>();
-                webBuilder.ConfigureKestrel(kestrelOptions =>
-                {
-                    kestrelOptions.Listen(System.Net.IPAddress.Loopback, 0); // config Krestel to listen to a random available port
-                });
             })
             .Build();
 
@@ -108,7 +104,10 @@ public partial class MainForm : Form
     {
         var serverAddresses = _webHost!.Services.GetService(typeof(IServer)) as IServer;
         var addressesFeature = serverAddresses?.Features.Get<IServerAddressesFeature>();
-        var url = addressesFeature?.Addresses.FirstOrDefault();
+        var url = addressesFeature?.Addresses?.FirstOrDefault()?
+            .Replace("[::]", "localhost")
+            .Replace("0.0.0.0", "localhost");
+ 
         return url;
     }
     #endregion AspNetCore Host
