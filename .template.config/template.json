@@ -23,7 +23,8 @@
               "**/*.suo",
               "**/*.userosscache",
               "**/*.sln.docstates",
-              "**/.git"
+              "**/.git",
+              "LICENSE"
             ]
           }
         ]
