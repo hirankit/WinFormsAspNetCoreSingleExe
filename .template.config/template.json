@@ -22,7 +22,8 @@
               "**/*.csproj.user",
               "**/*.suo",
               "**/*.userosscache",
-              "**/*.sln.docstates"
+              "**/*.sln.docstates",
+              "**/.git"
             ]
           }
         ]
